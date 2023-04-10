@@ -1,8 +1,9 @@
 import { useRecoilValue } from "recoil";
-import { listaDeEventosState } from "../atom";
+import eventosFiltradosState from "../seletores";
 
 const useListaDeEventos = () => {
-  return useRecoilValue(listaDeEventosState);
+  // Agora esse hook retorna os eventos filtrados em vez de todos os eventos
+  return useRecoilValue(eventosFiltradosState);
 };
 
 export default useListaDeEventos;

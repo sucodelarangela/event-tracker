@@ -1,4 +1,3 @@
-
 .Filtro {
   display: flex;
   align-items: stretch;
@@ -7,7 +6,8 @@
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
-  .input {
+  .input,
+  .select {
     margin: 8px 0;
     box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
     background-color: #fff;

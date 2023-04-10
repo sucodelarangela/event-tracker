@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 import { IEvento } from '../interfaces/IEvento';
+import { IFiltro } from '../interfaces/IFiltro';
 
 export const listaDeEventosState = atom<IEvento[]>({
   key: 'listaDeEventosState',
@@ -20,6 +21,12 @@ export const listaDeEventosState = atom<IEvento[]>({
     }
   ]
 });
+
+// Criando átomos de filtro para reagir à aplicação de um filtro por data no form de filtros
+export const filtroDeEventos = atom<IFiltro>({
+  key: 'filtroDeEventos',
+  default: {}
+})
 
 /*
 
