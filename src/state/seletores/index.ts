@@ -1,8 +1,9 @@
 import { selector } from "recoil";
 import { filtroDeEventos, listaDeEventosState } from "../atom";
+import { IEvento } from "../../interfaces/IEvento";
 
-// Criando um estado derivado de um atom
-const eventosFiltradosState = selector({
+// Criando um estado derivado de um atom, usando seletores
+export const eventosFiltradosState = selector({
   key: 'eventosFiltradosState',
   // obtendo valores do recoil:
   get: ({ get }) => {
@@ -32,4 +33,17 @@ const eventosFiltradosState = selector({
   }
 });
 
-export default eventosFiltradosState;
+// estado derivado dos dados que vem da API com json-server
+export const eventosAsync = selector({
+  key: 'eventosAsync',
+  // diferente do selector de filtros, não vamos derivar um átomo, mas fazer uma chamada assíncrona da API
+  get: async () => {
+    const respostaHttp = await fetch('http://localhost:8080/eventos');
+    const eventosJson: IEvento[] = await respostaHttp.json();
+    return eventosJson.map(evento => ({
+      ...evento,
+      inicio: new Date(evento.inicio),
+      fim: new Date(evento.fim)
+    }));
+  }
+});
