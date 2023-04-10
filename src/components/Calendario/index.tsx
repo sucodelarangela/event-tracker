@@ -3,9 +3,8 @@ import style from './Calendario.module.scss';
 import ptBR from './localizacao/ptBR.json';
 import Kalend, { CalendarEvent, CalendarView, OnEventDragFinish } from 'kalend';
 import 'kalend/dist/styles/index.css';
-import { useRecoilValue } from 'recoil';
-import { listaDeEventosState } from '../../state/atom';
 import useAtualizarEvento from '../../state/hooks/useAtualizarEvento';
+import useListaDeEventos from '../../state/hooks/useListaDeEventos';
 
 interface IKalendEvento {
   id?: number;
@@ -16,8 +15,9 @@ interface IKalendEvento {
 }
 
 const Calendario: React.FC = () => {
-  // Acessando a lista de eventos com Recoil
-  const eventos = useRecoilValue(listaDeEventosState);
+  // Acessando a lista de eventos com Recoil através de um custom hook
+  const eventos = useListaDeEventos();
+  // const eventos = useRecoilValue(listaDeEventosState);
   const eventosKalend = new Map<string, IKalendEvento[]>();
   // Definindo setter da lista de eventos para uso na função de atualização de eventos:
   // const setListaDeEventos = useSetRecoilState<IEvento[]>(listaDeEventosState);
